@@ -1,1 +1,46 @@
+Avocado SQL coding
 
+### Pulling certain columns from the dataset
+SELECT 
+date,
+region,
+small_bags,
+large_bags,
+XLarge_Bags,
+total_bags
+FROM `avocado-dataset-358600.avocado_data.avocado_prices`
+
+
+### Adding columns together and giving them a new column
+SELECT 
+date,
+region,
+small_bags,
+large_bags,
+XLarge_Bags,
+total_bags
+Small_Bags + Large_Bags + Xlarge_Bags AS Total_Bags_Calc
+FROM `avocado-dataset-358600.avocado_data.avocado_prices`
+
+
+### Finding the percentage of small bags and giving the results a new column
+SELECT 
+date,
+region,
+total_bags,
+small_bags,
+(small_bags/total_bags)*100 AS small_bags_percent
+FROM `avocado-dataset-358600.avocado_data.avocado_prices`
+ 
+
+### The results returned as an error because there is a total of bags that equals 0. To fix this problem I ran the following code 
+to run a query that doesn’t equal to 0. 
+
+SELECT 
+date,
+region,
+total_bags,
+small_bags,
+(small_bags/total_bags)*100 AS small_bags_percent
+FROM `avocado-dataset-358600.avocado_data.avocado_prices`
+Where total_bags <> 0
