@@ -1,1 +1,83 @@
+Within this dataset I used the following functions Length(),Trim()
+
+### Pulled customer Id from dataset which returned three duplicates
+
+select
+customer_id
+from `customer-dataset-358511.Customer_Data.customer_address`
+
+
+### Pulled unique customer id by using the Distinct query which will only pull one of each customer id
+
+Select DISTINCT
+customer_id
+From `customer-dataset-358511.Customer_Data.customer_address`
+
+
+### Pulled customer name and city Data from dataset
+
+SELECT 
+name,
+city
+FROM `customer-dataset-358511.Customer_Data.customer_address` 
+  
+  
+
+### Inserted updated customer address into dataset
+
+INSERT INTO  `customer-dataset-358511.Customer_Data customer_address`
+(customer_id, address, city, state, zipcode, country)
+Values 
+(2645,`333 SQL Road`,`Jackson`,`MI`, 49202, `US`)
+
+
+### Updated specific customer address
+
+update `customer-dataset-358511.Customer_Data.customer_address`
+set address = `123 New Address`
+where customer_id =2645
+
+
+### Length to make sure text strings are consistent to remind myself what the results where I labeled the column as 
+
+select
+length(country) AS letters_in_country
+from `customer-dataset-358511.Customer_Data.customer_address`
+
+### Almost all text strings were consistent of 2 letters except for one that came back as three letters
+
+### The following query returned the text strings within the country column that were greater than two which returned two results that 
+were labeled as `USA` instead of `US`
+
+select
+country
+from `customer-dataset-358511.Customer_Data.customer_address`
+where length(country)>2
+
+
+### Used the substring function to return first two letter of each country
+
+select distinct
+customer_id
+from `customer-dataset-358511.Customer_Data.customer_address`
+where substr(country,1,2) =`US`
+
+
+
+### Returned state column to see if there are any state text string greater than two. Which returned one state `OH `. 
+There is 2 characters, but it still returned when I ran the query which means it must have a space.
+
+select
+state
+from `customer-dataset-358511.Customer_Data.customer_address`
+where length(state)>2
+
+
+
+### I used the trim function to eliminate the space with the text string to make sure that the string variables are consistent and 
+complete to avoid errors or miscalculations select distinct customer_id
+
+from `customer-dataset-358511.Customer_Data.customer_address`
+where trim(state) =`OH`
+
 
